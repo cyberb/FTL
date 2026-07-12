@@ -189,9 +189,9 @@ const char *generate_teleporter_zip(mz_zip_archive *zip, char filename[128], voi
 		return "Failed to add /etc/hosts to heap ZIP archive!";
 	}
 
-	// Add /etc/pihole/dhcp.lease to the ZIP archive if it exists
+	// Add the DHCP leases file to the ZIP archive if it exists
 	file_comment = "DHCP leases file";
-	file_path = "/etc/pihole/dhcp.leases";
+	file_path = DHCPLEASESFILE;
 	if(file_exists(file_path) && !mz_zip_writer_add_file(zip, file_path+1, file_path, file_comment, (uint16_t)strlen(file_comment), MZ_BEST_COMPRESSION))
 	{
 		mz_zip_writer_end(zip);

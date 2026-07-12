@@ -18,4 +18,12 @@ project(PIHOLE_FTL C)
 
 set(DNSMASQ_VERSION pi-hole-v2.93)
 
+# Base directory holding Pi-hole's configuration and state (pihole.toml,
+# dnsmasq.conf, the databases, ...). Packagers can relocate the whole tree with
+#   cmake -DPIHOLE_INSTALL_DIR=/opt/pihole/etc ...
+# The default matches the historical hardcoded location. This is a build-time
+# knob only and does not add a runtime override.
+set(PIHOLE_INSTALL_DIR "/etc/pihole" CACHE STRING "Base directory for Pi-hole configuration and state")
+add_compile_definitions(PIHOLE_INSTALL_DIR="${PIHOLE_INSTALL_DIR}")
+
 add_subdirectory(src)
