@@ -171,8 +171,10 @@ int main (int argc, char *argv[])
 
 	cleanup(exit_code);
 
+#ifndef FTL_EXIT_ON_RESTART
 	if(exit_code == RESTART_FTL_CODE)
 		execvp(argv[0], argv);
+#endif
 
 	return exit_code;
 }
