@@ -889,7 +889,7 @@ void http_init(void)
 	init.configuration_options = (const char**)conf_opts;
 
 	/* Start the server */
-	if((ctx = mg_start2(&init, &error)) == NULL || !get_server_ports())
+	if((ctx = mg_start2(&init, &error)) == NULL || (get_server_ports(), false))
 	{
 		log_err("Start of webserver failed! Web interface will not be available!");
 		print_webserver_opts(false, idx, (const char **)conf_opts);
